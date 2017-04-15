@@ -10,13 +10,14 @@ from plot import plot_height, plot_color
 #references: http://laspy.readthedocs.io/en/latest/tut_part_1.html
 
 #read in lidar file
-filePath = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/GreaterThan1mHAG/tile-11.las"
-inFile = laspy.file.File(filePath, mode = "r")
+filePath = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/GreaterThan1mHAG/tile-11.csv"
+#inFile = laspy.file.File(filePath, mode = "r")
+inFile = np.genfromtxt(filePath, delimiter=',', skip_header=1)
 
 
-headerformat = inFile.header.header_format
-for spec in headerformat:
-    print(spec.name)
+#headerformat = inFile.header.header_format
+#for spec in headerformat:
+#    print(spec.name)
 
 #Remove Ground Points (ALREADY DONE IN R PROCESSING):
 #Ground Classification == 2
@@ -31,7 +32,8 @@ for spec in headerformat:
 #outFile_nonGround.points = nonGround
 
 
-nonGround_coords = np.vstack((inFile.x, inFile.y, inFile.z)).transpose()
+#nonGround_coords = np.vstack((inFile.x, inFile.y, inFile.z)).transpose()
+nonGround_coords = inFile[:,1:4]
 plot_height(nonGround_coords, "T-Lidar Tile 11 Non-Ground Points")
 
 import OPTICS
@@ -72,7 +74,7 @@ OPTICS.build_optics(testtree,9.2,100,'./testing_april13.txt')
 # Currently no load method to restore from text file
 
 # from initial tests, 13% of epsilon in optics seems to work well
-# .13 * 9.2
+# .13 * 9.2 = 1.196
 OPTICS.ExtractDBSCAN(testtree,1.196)
 
 # Core samples and labels #
@@ -109,9 +111,14 @@ pl.title('Estimated number of clusters: %d' % n_clusters_)
 pl.show()
 
 
+testtreeArray.shape
+#(107284, 3)
+labels.shape
+#(107284,)
 
-
-
+clusteredPoints = np.column_stack((testtreeArray, labels.T))
+o_fname = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/GreaterThan1mHAG/tile-11_clustered_points.csv"
+np.savetxt(o_fname, clusteredPoints, delimiter=',', header='X, Y, Z, Label')
 
 
 
