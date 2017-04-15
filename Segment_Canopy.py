@@ -1,3 +1,7 @@
+# cd githublocal/Point_Cloud_Canopy_Segmentation
+# source activate OPTICS
+# python
+
 #import packages:
 import laspy
 import numpy as np
@@ -6,7 +10,7 @@ from plot import plot_height, plot_color
 #references: http://laspy.readthedocs.io/en/latest/tut_part_1.html
 
 #read in lidar file
-filePath = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/tile-11.las"
+filePath = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/GreaterThan1mHAG/tile-11.las"
 inFile = laspy.file.File(filePath, mode = "r")
 
 
