@@ -17,8 +17,8 @@ from sklearn.cluster import OPTICS
 arguments = sys.argv[1:]
 
 filePath = arguments[1]
-eps = arguments[3]
-minNumSamples = arguments[5]
+eps = float(arguments[3])
+minNumSamples = int(arguments[5])
 
 #read in point cloud file in csv
 inFile = np.genfromtxt(filePath, delimiter=',', skip_header=1)
