@@ -5,7 +5,7 @@ library(lidR)
 
 setwd("/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05")
 # read file
-las = readLAS("lastools_merged.las")
+las = readLAS("tile-11.las")
 
 # ground classification
 #lasground(las, MaxWinSize = 10, InitDist = 0.05, CellSize = 7)
@@ -46,5 +46,7 @@ plot(tree, color = "treeID", colorPalette = pastel.colors(100))
 library(raster)
 contour = rasterToPolygons(crowns, dissolve = TRUE)
 
-plot(chm, col = height.colors(50))
+numFeatures = nrow(contour@data)
+
+plot(chm, col = height.colors(50), main = paste0("Watershed estimated number of clusters: ", numFeatures))
 plot(contour, add = T)

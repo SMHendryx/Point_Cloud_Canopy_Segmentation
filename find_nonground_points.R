@@ -16,7 +16,7 @@ las = readLAS("lastools_merged.las")
 #^killed: 9
 dtm = grid_terrain(las, res = .1, method = "knnidw")
 plot(dtm, main="SRER Mesquite Tower T-Lidar DTM")
-quartz.save("/Users/seanhendryx/Google Drive/THE UNIVERSITY OF ARIZONA (UA)/THESIS/Graphics/Ground Delineation/SRER Mesquite Tower T-Lidar DTM")
+quartz.save("/Users/seanhendryx/Google Drive/THE UNIVERSITY OF ARIZONA (UA)/THESIS/Graphics/Ground Delineation/SRER Mesquite Tower T-Lidar DTM All Tiles")
 dev.off()
 
 lasnorm = lasnormalize(las, dtm)
@@ -66,6 +66,13 @@ plot(sa)
 #test = readLAS("test.las")
 #plot(test)
 #works fine.  hmmmmmmmmmmm
+
+#since writeLAS is not working, just export coordinates as csv:
+
+nonground = tilenorm %>% lasfilter(Classification == 1 & Z > 1)
+plot(nonground)
+nonground_coordinates = nonground@data
+write.csv(nonground_coordinates, "GreaterThan1mHAG/tile-11.csv")
 
 
 
