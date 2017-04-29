@@ -51,6 +51,7 @@ labels = testtree._cluster_id[:]
 n_clusters_ = max(testtree._cluster_id)
 len(testtree._index[testtree._is_core[:] > 0])
 
+print(n_clusters_, " clusters found in OPTICS.fit(eps = {0}, min_samples = {1})".format(eps, minNumSamples), timeElapsed, "\n")
 
 
 #X.shape
@@ -58,9 +59,9 @@ len(testtree._index[testtree._is_core[:] > 0])
 #labels.shape
 #(107284,)
 
-clusteredPoints = np.column_stack((X, labels.T))
-o_fname = "/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/rectangular_study_area/classified/mcc-s_point20_-t_point05/GreaterThan1mHAG/tile-11_OPTICS_clustered_points.csv"
-np.savetxt(o_fname, clusteredPoints, delimiter=',', header='X, Y, Z, Label')
+#orderedPoints = np.column_stack((X, labels.T))
+#o_fname = 
+#np.savetxt(o_fname, orderedPoints, delimiter=',', header='X, Y, Z, Label')
 
 #from initial tests, 13% of epsilon in optics seems to work well for epsilon' (epsilon prime), ep
 ep = eps * .13
@@ -74,7 +75,7 @@ print("time elapsed after testtree.extract(epsilon_prime = {}, clustering='dbsca
 
 labels = testtree._cluster_id[:]
 n_clusters_ = max(testtree._cluster_id)
-print("number of clusters from OPTICS parameters eps = {0}, min_samples = {1}, eps_prime = {2}: ".format(eps, minNumSamples, ep), "\n", n_clusters_)
+print("Number of clusters from OPTICS parameters eps = {0}, min_samples = {1}, eps_prime = {2}: ".format(eps, minNumSamples, ep), "\n", n_clusters_)
 
 
 #Save output
