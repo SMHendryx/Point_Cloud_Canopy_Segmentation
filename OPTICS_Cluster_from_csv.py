@@ -28,6 +28,7 @@ X = inFile[:,1:4]
  
 startTime = time.time()
 
+print("Running OPTICS.  \n")
 testtree = OPTICS(eps = eps, min_samples = minNumSamples).fit(X)
 """# |  eps : float, optional given the label -1.
  |  The maximum distance between two samples for them to be considered
@@ -68,6 +69,7 @@ ep = eps * .13
 startTime = time.time()
 
 #Run DBSCAN to extract clusters from data ordered by OPTICS
+print("Extracting clusters by running DBSCAN on points ordered by OPTICS. \n"
 testtree.extract(epsilon_prime = ep, clustering='dbscan')
 
 timeElapsed = time.time() - startTime
