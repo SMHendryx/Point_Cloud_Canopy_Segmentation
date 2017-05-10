@@ -52,7 +52,7 @@ labels = testtree._cluster_id[:]
 n_clusters_ = max(testtree._cluster_id)
 len(testtree._index[testtree._is_core[:] > 0])
 
-print(n_clusters_, " clusters found in OPTICS.fit(eps = {0}, min_samples = {1})".format(eps, minNumSamples), timeElapsed, "\n")
+print(n_clusters_, " clusters found in OPTICS.fit(eps = {0}, min_samples = {1})".format(eps, minNumSamples), "\n")
 
 
 #X.shape
