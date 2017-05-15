@@ -69,8 +69,8 @@ ep = eps * .13
 startTime = time.time()
 
 #Run DBSCAN to extract clusters from data ordered by OPTICS
-print("Extracting clusters by running testtree.extract(clustering='auto'). \n"
-testtree.extract()
+print("Extracting clusters by running testtree.extract(). \n")
+testtree.extract(clustering='auto')
 
 timeElapsed = time.time() - startTime
 print("time elapsed after testtree.extract(clustering='auto') with minPts {0}: ".format(minNumSamples), timeElapsed, "\n")

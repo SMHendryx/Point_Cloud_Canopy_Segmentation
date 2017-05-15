@@ -69,7 +69,7 @@ ep = eps * .13
 startTime = time.time()
 
 #Run DBSCAN to extract clusters from data ordered by OPTICS
-print("Extracting clusters by running DBSCAN on points ordered by OPTICS. \n"
+print("Extracting clusters by running DBSCAN on points ordered by OPTICS. \n")
 testtree.extract(epsilon_prime = ep, clustering='dbscan')
 
 timeElapsed = time.time() - startTime
