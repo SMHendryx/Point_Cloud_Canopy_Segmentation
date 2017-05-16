@@ -1,4 +1,4 @@
-cd /Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/OPTICS_Param_Tests
+cd /Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/OPTICS_Param_Tests/tile-11/1
 source activate OPTICS1
 pythonw
 

@@ -20,7 +20,7 @@ filePath = arguments[1]
 eps = float(arguments[3])
 minNumSamples = int(arguments[5])
 if len(arguments) > 6:
-	eps_prime_perc = arguments[7]
+	eps_prime_perc = float(arguments[7])
 else:
 	#from initial tests, 13% of epsilon in optics seems to work well for epsilon' (epsilon prime), ep
 	eps_prime_perc = .13
