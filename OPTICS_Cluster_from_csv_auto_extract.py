@@ -83,7 +83,7 @@ print("Number of clusters from OPTICS parameters eps = {0}, min_samples = {1}: "
 #Save output
 #here
 clusteredPoints = np.column_stack((X, labels.T))
-o_fname = "OPTICS_clustered_points_eps_{0}_min_samples_{1}.csv".format(eps, minNumSamples)
+o_fname = "OPTICS_extract_clustered_points_eps_{0}_min_samples_{1}.csv".format(eps, minNumSamples)
 np.savetxt(o_fname, clusteredPoints, delimiter=',', header='X, Y, Z, Label')
 
 
