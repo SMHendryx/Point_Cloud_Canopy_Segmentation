@@ -13,12 +13,17 @@ from sklearn.cluster import OPTICS
 
 #ARGUMENTS CURRENTLY HARDCODED:
 # SHOULD BE INPUT AS:
-#"-f path/to/file -eps eps -min_samples minNumSamples
+#"-f path/to/file -eps eps -min_samples minNumSamples -epsilon_prime_percentage eps_prime_perc
 arguments = sys.argv[1:]
 
 filePath = arguments[1]
 eps = float(arguments[3])
 minNumSamples = int(arguments[5])
+if arguments[6]:
+	eps_prime_perc = arguments[7]
+else:
+	#from initial tests, 13% of epsilon in optics seems to work well for epsilon' (epsilon prime), ep
+	eps_prime_perc = .13
 
 #read in point cloud file in csv
 inFile = np.genfromtxt(filePath, delimiter=',', skip_header=1)
@@ -64,26 +69,25 @@ print(n_clusters_, " clusters found in OPTICS.fit(eps = {0}, min_samples = {1})"
 #o_fname = 
 #np.savetxt(o_fname, orderedPoints, delimiter=',', header='X, Y, Z, Label')
 
-#from initial tests, 13% of epsilon in optics seems to work well for epsilon' (epsilon prime), ep
-ep = eps * .13
+ep = eps * eps_prime_perc
 startTime = time.time()
 
 #Run DBSCAN to extract clusters from data ordered by OPTICS
 print("Extracting clusters by running testtree.extract(). \n")
-testtree.extract(clustering='auto')
+testtree.extract(epsilon_prime = ep, clustering='auto')
 
 timeElapsed = time.time() - startTime
 print("time elapsed after testtree.extract(clustering='auto') with minPts {0}: ".format(minNumSamples), timeElapsed, "\n")
 
 labels = testtree._cluster_id[:]
 n_clusters_ = max(testtree._cluster_id)
-print("Number of clusters from OPTICS parameters eps = {0}, min_samples = {1}: ".format(eps, minNumSamples), "\n", n_clusters_)
+print("Number of clusters from OPTICS extract_auto with parameters eps = {0}, min_samples = {1}, eps_prime_perc: ".format(eps, minNumSamples, eps_prime_perc), "\n", n_clusters_)
 
 
 #Save output
 #here
 clusteredPoints = np.column_stack((X, labels.T))
-o_fname = "OPTICS_extract_clustered_points_eps_{0}_min_samples_{1}.csv".format(eps, minNumSamples)
+o_fname = "OPTICS_extract_clustered_points_eps_{0}_min_samples_{1}_eps_prime_perc{3}.csv".format(eps, minNumSamples, eps_prime_perc)
 np.savetxt(o_fname, clusteredPoints, delimiter=',', header='X, Y, Z, Label')
 
 
