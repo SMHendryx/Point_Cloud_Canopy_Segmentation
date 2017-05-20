@@ -81,13 +81,13 @@ print("time elapsed after testtree.extract(clustering='auto') with minPts {0}: "
 
 labels = testtree._cluster_id[:]
 n_clusters_ = max(testtree._cluster_id)
-print("Number of clusters from OPTICS extract_auto with parameters eps = {0}, min_samples = {1}, eps_prime_perc: ".format(eps, minNumSamples, eps_prime_perc), "\n", n_clusters_)
+print("Number of clusters from OPTICS extract_auto with parameters eps = {0}, min_samples = {1}, eps_prime_perc: {2}".format(eps, minNumSamples, eps_prime_perc), "\n", n_clusters_)
 
 
 #Save output
 #here
 clusteredPoints = np.column_stack((X, labels.T))
-o_fname = "OPTICS_extract_clustered_points_eps_{0}_min_samples_{1}_eps_prime_perc{3}.csv".format(eps, minNumSamples, eps_prime_perc)
+o_fname = "OPTICS_extract_clustered_points_eps_{0}_min_samples_{1}_eps_prime_perc{2}.csv".format(eps, minNumSamples, eps_prime_perc)
 np.savetxt(o_fname, clusteredPoints, delimiter=',', header='X, Y, Z, Label')
 
 
