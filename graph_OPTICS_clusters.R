@@ -6,7 +6,7 @@ rm(list=ls())
 library("ggplot2")
 library("data.table")
 
-setwd("/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/OPTICS_Param_Tests/tile-11/2")
+setwd("/Users/seanhendryx/DATA/Lidar/SRER/maxLeafAreaOctober2015/OPTICS_Param_Tests/tile-11/5")
 
 files = list.files(pattern = "*.csv")
 
